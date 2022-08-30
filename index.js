@@ -29,15 +29,11 @@ function showGIFs(data) {
     let result = document.createElement("div");
     result.classList.add("container");
     document.body.append(result);
-    //console.log(container);
-        if (result !== "") {
-            document.body.remove(result);
-        }
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < data.data.length; i++) {
             let image = document.createElement("img");
             image.setAttribute("src", data.data[i].images.downsized.url);
-            image.width = 300;
-            result.append(image);
+            let newOne = document.querySelector(".container");
+            newOne.insertAdjacentElement("afterbegin", image);
         }
 }
 

@@ -8,6 +8,24 @@
     <title>Document</title>
 </head>
 
+<style>
+    .container {
+        display: grid;
+        grid-template-columns: repeat(5, 20%);
+        margin: 2% 0;
+    }
+
+    .container>img {
+        width: 250px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
 <body>
 
     <script src="index.js"></script>
