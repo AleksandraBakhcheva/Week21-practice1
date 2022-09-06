@@ -11,6 +11,9 @@ button.setAttribute("type", "submit");
 div.append(button);
 container.append(div);
 document.body.append(container);
+let div_error = document.createElement("div");
+div_error.classList.add("error");
+container.append(div_error);
 
 let form = document.querySelector("button");
 form.addEventListener("click", function(event) {
@@ -19,6 +22,10 @@ form.addEventListener("click", function(event) {
 });
 
 async function getGIFs() {
+    let errorCleaner = document.querySelector(".error");
+    if (errorCleaner !== null) {
+        errorCleaner.innerHTML = "";
+    }
     try {
         let request = document.querySelector(".search").value;
         const APIKEY = "coz7mNXbBDAPMHGvNDR4PVrRB0c0MwjI";
@@ -28,17 +35,14 @@ async function getGIFs() {
         return data;
         }
     catch (error) {
-        let div = document.createElement("div");
-        div.classList.add("error");
-        container.append(div);
         let message = document.createElement("p");
         message.classList.add("errormsg");
-        div.append(message);
+        div_error.append(message);
         document.querySelector(".errormsg").textContent = WARNINGERROR;
         let image = document.createElement("img");
         image.setAttribute('src', ERRORPIC);
         image.width = 300;
-        div.append(image);
+        div_error.append(image);
         console.log(error.type);
         console.log(error.message);
         document.querySelector(".search").value = "";
